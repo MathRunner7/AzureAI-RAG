@@ -1,0 +1,38 @@
+'''
+Azure configuration module for managing Azure service credentials.
+This module loads Azure storage and form recognizer credentials from environment variables.
+'''
+
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Azure Blob Storage and container configuration
+AZURE_STORAGE_CONNECTION_STRING = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
+AZURE_FORM_RECOGNIZER_ENDPOINT = os.getenv("AZURE_FORM_RECOGNIZER_ENDPOINT")
+AZURE_FORM_RECOGNIZER_KEY = os.getenv("AZURE_FORM_RECOGNIZER_KEY")
+
+# Azure OpenAI configuration
+AZURE_OPENAI_EMBEDDING_API_KEY = os.getenv("AZURE_OPENAI_EMBEDDING_API_KEY")
+AZURE_OPENAI_EMBEDDING_ENDPOINT = os.getenv("AZURE_OPENAI_EMBEDDING_ENDPOINT")
+AZURE_OPENAI_EMBEDDING_DEPLOYMENT = os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT")
+AZURE_OPENAI_EMBEDDING_VERSION = os.getenv("AZURE_OPENAI_EMBEDDING_VERSION")
+
+# Azure OpenAI Chat Completion configuration
+AZURE_OPENAI_CHAT_COMPLETION_API_KEY = os.getenv("AZURE_OPENAI_CHAT_COMPLETION_API_KEY")
+AZURE_OPENAI_CHAT_COMPLETION_ENDPOINT = os.getenv("AZURE_OPENAI_CHAT_COMPLETION_ENDPOINT")
+AZURE_OPENAI_CHAT_COMPLETION_VERSION = os.getenv("AZURE_OPENAI_CHAT_COMPLETION_VERSION")
+AZURE_OPENAI_CHAT_COMPLETION_DEPLOYMENT = os.getenv("AZURE_OPENAI_CHAT_COMPLETION_DEPLOYMENT")
+
+# Azure AI Search configuration
+AZURE_SEARCH_ENDPOINT = os.getenv("AZURE_SEARCH_ENDPOINT")
+AZURE_SEARCH_ADMIN_KEY = os.getenv("AZURE_SEARCH_ADMIN_KEY")
+AZURE_SEARCH_INDEX_NAME = os.getenv("AZURE_SEARCH_INDEX_NAME")
+
+# Local embedding model configuration
+LOCAL_EMBEDDING_MODEL_NAME = os.getenv("LOCAL_EMBEDDING_MODEL_NAME","all-MiniLM-L6-v2")
+LOCAL_VECTOR_DB_DIRECTORY = os.getenv("LOCAL_VECTOR_DB_DIRECTORY", "vectorstore")
+# Local LLM model path
+LOCAL_LLM_MODEL_PATH = os.getenv("LOCAL_LLM_MODEL_PATH")
