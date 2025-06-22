@@ -1,6 +1,7 @@
 # AzureAI-RAG
 RAG Application using Azure AI
 
+```text
 AzureAI-RAG/
 ├── config/                     # 🔧 Config files (keys, endpoints, constants)
 │   └── azure_config.py
