@@ -1,12 +1,14 @@
 # AzureAI-RAG
-RAG Application using Azure AI
+## RAG Application using Azure AI
+
+### File Structure
 
 ```text
 AzureAI-RAG/
 ├── config/                     # 🔧 Config files (keys, endpoints, constants)
 │   └── azure_config.py
-├── data/                       # 📁 Raw files downloaded from Azure Blob (Stored Temporirily)
-├── extracted/                  # 📄 Cleaned text from documents (Stored Temporirily)
+├── data/                       # 📁 Raw files downloaded from Azure Blob (Stored Temporarily)
+├── extracted/                  # 📄 Cleaned text from documents (Stored Temporarily)
 ├── vectorstore/                # 📦 Stored embeddings (FAISS or similar)
 ├── app/                        # 🧠 Core modules
 │   ├── ingestion/              
@@ -25,4 +27,44 @@ AzureAI-RAG/
 ├── main.py                     # 🔁 Entrypoint to glue modules together
 ├── requirements.txt
 ├── .env                        # Environment variables
+├── .gitattributes              # Git attributes file to specify how Git should handle certain files. Helps maintain consistent line endings and file handling across different platforms
+├── .gitignore                  # Files and folder mentioned in this file will not be uploaded on github
 └── README.md
+```
+
+---
+
+## Required Environment Variables
+
+Add the following variables to your `.env` file.  
+**Comments indicate where to find each value in the Azure Portal or relevant service.**
+
+```env
+# Azure Blob Storage and Form Recognizer
+AZURE_STORAGE_CONNECTION_STRING=      # Azure Portal > Storage Account > Access keys > Connection string
+AZURE_STORAGE_ACCOUNT_KEY=           # Azure Portal > Storage Account > Access keys > key1/key2
+AZURE_FORM_RECOGNIZER_ENDPOINT=      # Azure Portal > Form Recognizer > Keys and Endpoint > Endpoint
+AZURE_FORM_RECOGNIZER_KEY=           # Azure Portal > Form Recognizer > Keys and Endpoint > Key
+
+# Azure OpenAI Embedding
+AZURE_OPENAI_EMBEDDING_API_KEY=      # Azure Portal > Azure OpenAI > Keys and Endpoint > Key
+AZURE_OPENAI_EMBEDDING_ENDPOINT=     # Azure Portal > Azure OpenAI > Keys and Endpoint > Endpoint
+AZURE_OPENAI_EMBEDDING_DEPLOYMENT=   # Azure Portal > Azure OpenAI > Model Deployments > Deployment name
+AZURE_OPENAI_EMBEDDING_VERSION=      # Azure Portal > Azure OpenAI > API version (e.g., 2023-05-15)
+
+# Azure OpenAI Chat Completion
+AZURE_OPENAI_CHAT_COMPLETION_API_KEY=      # Azure Portal > Azure OpenAI > Keys and Endpoint > Key
+AZURE_OPENAI_CHAT_COMPLETION_ENDPOINT=     # Azure Portal > Azure OpenAI > Keys and Endpoint > Endpoint
+AZURE_OPENAI_CHAT_COMPLETION_DEPLOYMENT=   # Azure Portal > Azure OpenAI > Model Deployments > Deployment name
+AZURE_OPENAI_CHAT_COMPLETION_VERSION=      # Azure Portal > Azure OpenAI > API version (e.g., 2023-05-15)
+
+# Azure AI Search
+AZURE_SEARCH_ENDPOINT=              # Azure Portal > Cognitive Search > Overview > URL
+AZURE_SEARCH_ADMIN_KEY=             # Azure Portal > Cognitive Search > Keys > Admin key
+AZURE_SEARCH_INDEX_NAME=            # Azure Portal > Cognitive Search > Indexes > Index name
+
+# Huggingface/Local Model Configuration
+LOCAL_EMBEDDING_MODEL_NAME=         # Name of local Huggingface embedding model (if used)
+LOCAL_VECTOR_DB_DIRECTORY=          # Directory path for local vector DB storage
+LOCAL_LLM_MODEL_PATH=               # Path to local LLM model (if used)
+```

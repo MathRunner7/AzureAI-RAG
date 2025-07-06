@@ -42,7 +42,10 @@ def search_chunks_azure(query_embedding: List[float], k: int) -> List[str]:
         # Convert query_embedding to a list if it's a numpy array
         results = client.search(
             search_text=None,
-            vector_queries=[{'kind': 'vector', 'vector': query_embedding, 'fileds': 'embedding', 'k': k}],
+            vector_queries=[{'kind': 'vector',
+                             'vector': query_embedding,
+                             'fields': 'embedding',
+                             'k': k}],
             select=["content"],  # Assuming 'content' is the field containing the text chunks
         )
 
@@ -87,8 +90,8 @@ def get_top_k_chunks(query: str, k: int = 3, use_azure: bool = False) -> List[st
     Returns:
         List[str]: A list of top-k chunks similar to the input query.
     '''
-    embedding = get_embeddings(chunks=[query], use_azure=use_azure)
-
+    embedding = get_embeddings(chunks=[query], use_azure=use_azure)[0]
+    logger.info(f"Query embedding: {len(embedding)} dimensions")
     if use_azure:
         return search_chunks_azure(embedding, k)
     else:

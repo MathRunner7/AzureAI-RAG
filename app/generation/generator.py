@@ -58,9 +58,7 @@ Question:
             messages=[
                 {"role": "system", "content": "You are an assistant that answers questions based on provided context."},
                 {"role": "user", "content": prompt}
-            ],
-            temperature=0.3,
-            max_tokens=512
+            ]
         )
         return response.choices[0].message.content.strip()
 
