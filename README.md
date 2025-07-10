@@ -10,6 +10,7 @@ AzureAI-RAG/
 ├── data/                       # 📁 Raw files downloaded from Azure Blob (Stored Temporarily)
 ├── extracted/                  # 📄 Cleaned text from documents (Stored Temporarily)
 ├── vectorstore/                # 📦 Stored embeddings (FAISS or similar)
+├── models/                     # # 🤗 Hugging Face model storage folder
 ├── app/                        # 🧠 Core modules
 │   ├── ingestion/              
 │   │   ├── blob_reader.py      # Step 1: Ingest from Azure
@@ -30,6 +31,28 @@ AzureAI-RAG/
 ├── .gitattributes              # Git attributes file to specify how Git should handle certain files. Helps maintain consistent line endings and file handling across different platforms
 ├── .gitignore                  # Files and folder mentioned in this file will not be uploaded on github
 └── README.md
+```
+
+---
+
+# Basic Configuration 
+
+---
+
+# Download local model from Huggingface
+
+```
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+model_id = "microsoft/phi-2"  # Replace with your choice from https://huggingface.co/models
+
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+model = AutoModelForCausalLM.from_pretrained(model_id)
+
+# Save model on local storage
+model_save_path = "./models/phi-2"   # This should be configured as value for LOCAL_LLM_MODEL_PATH in .env file
+model.save_pretrained(model_save_path)
+tokenizer.save_pretrained(model_save_path)
 ```
 
 ---
@@ -68,3 +91,4 @@ LOCAL_EMBEDDING_MODEL_NAME=         # Name of local Huggingface embedding model 
 LOCAL_VECTOR_DB_DIRECTORY=          # Directory path for local vector DB storage
 LOCAL_LLM_MODEL_PATH=               # Path to local LLM model (if used)
 ```
+
